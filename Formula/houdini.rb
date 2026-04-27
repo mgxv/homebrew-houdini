@@ -1,8 +1,8 @@
 class Houdini < Formula
   desc "Hides the menu bar when the frontmost fullscreen app is playing in Now Playing"
   homepage "https://github.com/mgxv/houdini"
-  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.11.0.tar.gz"
-  sha256 "e4df54e6f215dee6dc28a58983953d1a91810c2ba087b36c842008e194cc4819"
+  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.11.1.tar.gz"
+  sha256 "0b8da5723f6554e6ebef5f06246ebd69988ca804e258711ce9b615a6f7d184cb"
   license "MIT"
 
   depends_on macos: :sequoia
@@ -25,24 +25,13 @@ class Houdini < Formula
 
   def caveats
     <<~EOS
-      Accessibility permission
-      ---------------------------------------------------------------
-      houdini needs Accessibility to detect whether the frontmost app
-      is in fullscreen. `brew services start houdini` triggers the
-      prompt on a fresh install; `brew services restart houdini`
-      re-triggers it when permission is missing (after an upgrade,
-      after revocation, or if the original prompt was dismissed).
-      The restart form works in both cases, so when in doubt, use it.
-
-        Grant Accessibility permission to houdini:
-             brew services restart houdini
-
       After upgrading
       ---------------------------------------------------------------
-      `brew upgrade houdini` installs a freshly-signed binary, which
-      macOS treats as a new identity for Accessibility — the existing
-      grant no longer applies. Run `brew services restart houdini` to
-      re-trigger the prompt and re-grant.
+      `brew upgrade houdini` installs the new binary on disk but
+      doesn't cycle the running daemon, so the old version stays
+      resident until you restart:
+
+          brew services restart houdini
 
       How it works
       ---------------------------------------------------------------
