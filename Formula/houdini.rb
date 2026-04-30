@@ -1,8 +1,8 @@
 class Houdini < Formula
   desc "Hides the menu bar when the frontmost fullscreen app is playing in Now Playing"
   homepage "https://github.com/mgxv/houdini"
-  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.13.0.tar.gz"
-  sha256 "e045680c40f058dfc6aa66200f0ef08394aa4ef5bd47555372872212fcc7b82d"
+  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.14.0.tar.gz"
+  sha256 "c6b5242162740509284ccc4f8f977be2e67271200246c8025b4898aeee3afa6d"
   license "MIT"
 
   depends_on macos: :sequoia
@@ -64,6 +64,17 @@ class Houdini < Formula
       same app, exiting fullscreen, or pausing brings it back. In
       practice: fullscreen YouTube, Netflix, Apple TV+, and Spotify
       hide the bar; fullscreen Terminal doesn't.
+
+      Manual override
+      ---------------------------------------------------------------
+      ⌃⌥⌘H (Ctrl+Option+Cmd+H) flips the menu bar regardless of
+      what the daemon decided — force-hide if showing, force-show
+      if hidden. One-shot: the next real event (frontmost change,
+      fullscreen toggle, AX focus, Now Playing update) yields
+      control back to the daemon.
+
+      Useful when AX title-changed events are delayed or missed
+      and the window-title gate gets stuck on stale state.
 
       Limitations
       ---------------------------------------------------------------
