@@ -1,8 +1,8 @@
 class Houdini < Formula
   desc "Hides the menu bar when the frontmost fullscreen app is playing in Now Playing"
   homepage "https://github.com/mgxv/houdini"
-  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.15.2.tar.gz"
-  sha256 "ecbecaa10440b0561fd0765ca1cf366e64fc7e04bd59d2f65f64909d0298f1ce"
+  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.16.0.tar.gz"
+  sha256 "1bc6c794a2a643aefefb0b5cd88ff89513510f0f4332d78ea69870b6bc3bc97d"
   license "MIT"
 
   depends_on macos: :sequoia
@@ -69,9 +69,16 @@ class Houdini < Formula
       ---------------------------------------------------------------
       ⌃⌥⌘M (Ctrl+Option+Cmd+M) flips the menu bar regardless of
       what the daemon decided — force-hide if showing, force-show
-      if hidden. One-shot: the next real event (frontmost change,
-      fullscreen toggle, AX focus, Now Playing update) yields
-      control back to the daemon.
+      if hidden. The override is sticky to the tab/window where
+      you set it (keyed on bundle id + focused window title):
+      pause/resume, AX title wobble, FS↔FS hops, and switching
+      to other apps keep it pinned. Switching to a different tab
+      doesn't apply it there; coming back re-applies without
+      another press. In-memory only; cleared on daemon restart.
+
+      When the focused window has no AX title (Accessibility not
+      granted, or edge cases like login-window) the press falls
+      through to a one-shot that clears on the next real event.
 
       Useful when AX title-changed events are delayed or missed
       and the window-title gate gets stuck on stale state.
