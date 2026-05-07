@@ -1,8 +1,8 @@
 class Houdini < Formula
   desc "Hides the menu bar when the frontmost fullscreen app is playing in Now Playing"
   homepage "https://github.com/mgxv/houdini"
-  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.17.0.tar.gz"
-  sha256 "9c36079cab81b0eae7b11f094b7a2674abd6b9ee2fdd8d7ab08006f2f859bdb1"
+  url "https://github.com/mgxv/houdini/archive/refs/tags/v0.18.0.tar.gz"
+  sha256 "f62ec9a48ddb1e279279bed96f9af6308a0275e108afd8055d6d40e35ae088d6"
   license "MIT"
 
   depends_on macos: :sequoia
@@ -25,26 +25,13 @@ class Houdini < Formula
 
   def caveats
     <<~EOS
-      Accessibility permission
-      ---------------------------------------------------------------
-      First start prompts for Accessibility — distinguishes two
-      windows of the same app (e.g. the playing Chrome tab vs. a
-      different fullscreen Chrome window). Without it, the daemon
-      falls back to process-level matching only.
-
-      If you dismiss the prompt, revoke it, or run `brew upgrade`
-      (macOS treats the freshly-signed binary as a new identity),
-      restart to re-prompt:
-
-          brew services restart houdini
-
       Manual override
       ---------------------------------------------------------------
-      ⌃⌥⌘M flips the menu bar against the daemon's decision —
-      sticky to the tab/window where you set it. See the README
-      for matching rules and edge cases:
+      ⌃⌥⌘M flips the menu bar against the daemon's decision until
+      the next signal change. See the README for behavior and
+      mode differences:
 
-          https://github.com/mgxv/houdini#manual-override
+          https://github.com/mgxv/houdini#hotkey
     EOS
   end
 
